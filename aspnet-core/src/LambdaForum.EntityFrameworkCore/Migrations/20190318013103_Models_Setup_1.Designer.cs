@@ -4,14 +4,16 @@ using LambdaForum.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LambdaForum.Migrations
 {
     [DbContext(typeof(LambdaForumDbContext))]
-    partial class LambdaForumDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190318013103_Models_Setup_1")]
+    partial class Models_Setup_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
