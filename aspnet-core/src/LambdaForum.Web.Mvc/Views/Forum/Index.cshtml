@@ -1,7 +1,33 @@
 ﻿@model LambdaForum.Web.Models.Forum.ForumListingModel
 
-@foreach(var forum in Model.forums)
-{
-    <h1>@forum.Title</h1>
-}
+<h2>Welcome To Lambdha Forum.</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Image</th>
+        </tr>
+    </thead>
+    <tbody>
 
+
+        @foreach (var forum in Model.Forums)
+        {
+        <tr>
+            <th scope="row">@forum.Id</th>
+
+            <td>
+                <a asp-controller="Forum" asp-action="Topic" asp-route-id="@forum.Id">
+                @forum.Title
+                </a>
+            </td>
+
+            <td>@forum.Description</td>
+        </tr>
+
+        }
+
+    </tbody>
+    </table>

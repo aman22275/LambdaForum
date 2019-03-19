@@ -9,13 +9,13 @@ namespace LambdaForum.Web.Models.Forum
 {
     public class ForumListingModel
     {
-        public List<ForumListDto> s { get; }
+       
 
-       public IReadOnlyList<ForumListDto> forums { get; }
+       public IReadOnlyList<ForumListDto> Forums { get; }
 
       public ForumListingModel(IReadOnlyList<ForumListDto> forums)
         {
-            this.forums = forums;
+            Forums = forums;
         }
 
       

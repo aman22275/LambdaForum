@@ -24,12 +24,12 @@ namespace LambdaForum.Common
 
         }
 
-        public Task Create(ForumCreateDto input)
+        public System.Threading.Tasks.Task Create(ForumCreateDto input)
         {
             throw new NotImplementedException();
         }
 
-        public Task Delete(int id)
+        public System.Threading.Tasks.Task Delete(int id)
         {
             throw new NotImplementedException();
         }
@@ -41,15 +41,15 @@ namespace LambdaForum.Common
 
         public Forum GetById(int id)
         {
-            throw new NotImplementedException();
+            return _forumRepo.FirstOrDefault(f => f.Id == id);
         }
 
-        public Task UpdateForumDescription(int id, string newDescription)
+        public System.Threading.Tasks.Task UpdateForumDescription(int id, string newDescription)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateForumTitle(int id, string newTitle)
+        public System.Threading.Tasks.Task UpdateForumTitle(int id, string newTitle)
         {
             throw new NotImplementedException();
         }
@@ -57,8 +57,9 @@ namespace LambdaForum.Common
 
        public async Task<List<ForumListDto>> GetAll()
         {
-            var t = await _forumRepo.GetAll()                  
-                    .ToListAsync();
+            var t = await _forumRepo.GetAll().ToListAsync();
+            //IEnumerable<Forum>  d = t.Where(c => c.Title == "aman").ToList<>
+                   
 
             return new List<ForumListDto>(ObjectMapper.Map<List<ForumListDto>>(t));
         }
