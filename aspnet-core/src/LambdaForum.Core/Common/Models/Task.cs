@@ -2,6 +2,7 @@
 using Abp.Domain.Entities.Auditing;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace LambdaForum.Common.Models
@@ -17,8 +18,17 @@ namespace LambdaForum.Common.Models
 
             public TaskState State { get; set; }
 
-        }
+            [ForeignKey(nameof(AssignedPersonId))]
+            public Person AssignedPerson { get; set; }
+            public Guid? AssignedPersonId { get; set; }
 
+            public Task(Guid? assignedPersonId = null)
+            {
+                AssignedPersonId = assignedPersonId;
+            }
+      }
+
+      
 
         public enum TaskState : byte
         {

@@ -52,6 +52,13 @@ namespace LambdaForum.Web.Startup
                         url: "About",
                         icon: "info"
                     )
+                ).AddItem(
+                    new MenuItemDefinition(
+                        PageNames.Tasks,
+                        L("Tasks"),
+                        url: "Task",
+                        icon: "info"
+                    )
                 ).AddItem( // Menu items below is just for demonstration!
                     new MenuItemDefinition(
                         "MultiLevelMenu",

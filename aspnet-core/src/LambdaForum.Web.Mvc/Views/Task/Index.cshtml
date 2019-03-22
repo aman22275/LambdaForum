@@ -1,0 +1,20 @@
+﻿@model LambdaForum.Web.Models.Tasks.GetAllTaskViewModel
+
+<div class="row">
+    <div>
+        <ul class="list-group" id="TaskList">
+            @foreach (var task in Model.Tasks)
+            {
+            <li class="list-group-item">
+
+                <a asp-controller="Task" asp-action="TaskDetail" asp-route-id="@task.Id">
+                    <h4 class="list-group-item-heading">@task.Name</h4>
+                </a>
+                <div class="list-group-item-text">
+                    @task.CreationTime.ToString("yyyy-MM-dd HH:mm:ss")
+                </div>
+            </li>
+            }
+        </ul>
+    </div>
+</div>

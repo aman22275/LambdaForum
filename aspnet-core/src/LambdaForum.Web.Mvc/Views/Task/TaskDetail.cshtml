@@ -1,0 +1,13 @@
+﻿@model LambdaForum.Web.Models.Tasks.GetTaskByIdModel
+@{
+    ViewData["Title"] = "TaskDetail";
+}
+
+<h2>@Model.Tasks.Name</h2>
+<p>
+    @Model.Tasks.State
+</p>
+<p>
+    @Model.Tasks.TaskType
+</p>
+<span class="pull-right label  ">@L($"TaskState_{Model.Tasks.State}")</span>

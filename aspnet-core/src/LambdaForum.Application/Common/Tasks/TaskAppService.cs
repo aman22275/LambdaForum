@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services;
 using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
+using LambdaForum.Common.Models;
 using LambdaForum.Common.Tasks.Dto;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,7 +13,7 @@ using Task = LambdaForum.Common.Models.Task;
 
 namespace LambdaForum.Common.Tasks
 {
-    class TaskAppService : ApplicationService, ITaskAppService
+   public class TaskAppService : ApplicationService, ITaskAppService
     {
         private readonly IRepository<Task> _taskRepo;
 
@@ -22,12 +23,17 @@ namespace LambdaForum.Common.Tasks
         }
         public async Task<List<TaskListDto>> GetAll(GetAllTasksInput input)
         {
-            var tasks = await _taskRepo.GetAll().ToListAsync();
-            var c = tasks.WhereIf(input.State.HasValue, t => t.State == input.State.Value)
-              .OrderByDescending(t => t.CreationTime);
+            var tasks = await _taskRepo.GetAll()
+                          
+                .ToListAsync();
 
-            return new List<TaskListDto>(ObjectMapper.Map<List<TaskListDto>>(c));
+            return new List<TaskListDto>(ObjectMapper.Map<List<TaskListDto>>(tasks));
 
+        }
+
+        public Task GetTaskById(int id)
+        {
+            return _taskRepo.FirstOrDefault(i => i.Id == id);
         }
     }
     

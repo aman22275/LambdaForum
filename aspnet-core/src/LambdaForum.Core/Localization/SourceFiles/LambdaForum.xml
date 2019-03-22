@@ -3,6 +3,11 @@
   <texts>
     <text name="HomePage" value="Home page" />
     <text name="About" value="About" />
+    <text name="Tasks" value="Tasks" />
+    <text name="TaskList" value="Task List" />
+    <text name="TaskState_Open" value="Open" />
+    <text name="TaskState_Completed" value="Completed" />
+   
     <text name="WelcomeMessage" value="Welcome to LambdaForum!" />
     <text name="FormIsNotValidMessage" value="Form is not valid. Please check and fix errors." />
     <text name="TenantNameCanNotBeEmpty" value="Tenant name can not be empty" />
@@ -95,5 +100,6 @@
     <text name="Skins">Skins</text>
     <text name="Settings">Settings</text>
     <text name="Filter">Filter</text>
+    
   </texts>
 </localizationDictionary>

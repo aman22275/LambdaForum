@@ -16,7 +16,7 @@ namespace LambdaForum.Common.Tasks.Dto
 
         public string TaskType { get; set; }
         public string DueDate { get; set; }
-
+        public TaskState State { get; set; }
     }
 
     public class GetAllTasksInput
