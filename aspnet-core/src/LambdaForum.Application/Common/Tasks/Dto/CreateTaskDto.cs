@@ -1,5 +1,4 @@
-﻿using Abp.Application.Services.Dto;
-using Abp.AutoMapper;
+﻿using Abp.AutoMapper;
 using LambdaForum.Common.Models;
 using System;
 using System.Collections.Generic;
@@ -7,8 +6,8 @@ using System.Text;
 
 namespace LambdaForum.Common.Tasks.Dto
 {
-    [AutoMapFrom(typeof(Task))]
-    public class TaskListDto : EntityDto
+    [AutoMapTo(typeof(Task))]
+    public class CreateTaskDto
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -21,10 +20,5 @@ namespace LambdaForum.Common.Tasks.Dto
         public Guid? AssignedPersonId { get; set; }
 
         public string AssignedPersonName { get; set; }
-    }
-
-    public class GetAllTasksInput
-    {
-        public TaskState? State { get; set; }
     }
 }

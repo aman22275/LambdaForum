@@ -11,8 +11,8 @@ namespace LambdaForum.Common.Tasks
     public interface ITaskAppService : IApplicationService
     {
         Task<List<TaskListDto>> GetAll(GetAllTasksInput input);
-
         Task GetTaskById(int id);
+        System.Threading.Tasks.Task Create(CreateTaskDto input);
 
 
     }

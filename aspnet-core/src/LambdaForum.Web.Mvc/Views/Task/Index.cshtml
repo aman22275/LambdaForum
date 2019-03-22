@@ -11,7 +11,7 @@
                     <h4 class="list-group-item-heading">@task.Name</h4>
                 </a>
                 <div class="list-group-item-text">
-                    @task.CreationTime.ToString("yyyy-MM-dd HH:mm:ss")
+                    @task.CreationTime.ToString("yyyy-MM-dd HH:mm:ss") | @(task.AssignedPersonName ?? L("Unassigned"))
                 </div>
             </li>
             }

@@ -21,10 +21,17 @@ namespace LambdaForum.Common.Tasks
         {
             _taskRepo = taskRepo;
         }
+
+        public async System.Threading.Tasks.Task Create(CreateTaskDto input)
+        {
+            var task = ObjectMapper.Map<Task>(input);
+            await _taskRepo.InsertAsync(task);
+        }
+
         public async Task<List<TaskListDto>> GetAll(GetAllTasksInput input)
         {
             var tasks = await _taskRepo.GetAll()
-                          
+                          .Include(t => t.AssignedPerson)
                 .ToListAsync();
 
             return new List<TaskListDto>(ObjectMapper.Map<List<TaskListDto>>(tasks));
