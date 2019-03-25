@@ -1138,7 +1138,7 @@ namespace LambdaForum.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<Guid?>("AssignedPersonId");
+                    b.Property<long>("AssignedPersonId");
 
                     b.Property<DateTime>("CreationTime");
 
@@ -1383,9 +1383,10 @@ namespace LambdaForum.Migrations
 
             modelBuilder.Entity("LambdaForum.Common.Models.Task", b =>
                 {
-                    b.HasOne("LambdaForum.Common.Models.Person", "AssignedPerson")
+                    b.HasOne("LambdaForum.Authorization.Users.User", "AssignedPerson")
                         .WithMany()
-                        .HasForeignKey("AssignedPersonId");
+                        .HasForeignKey("AssignedPersonId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("LambdaForum.MultiTenancy.Tenant", b =>

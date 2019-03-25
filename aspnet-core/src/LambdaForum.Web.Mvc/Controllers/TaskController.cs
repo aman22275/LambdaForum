@@ -6,6 +6,7 @@ using Abp.Application.Services.Dto;
 using LambdaForum.Common.Tasks;
 using LambdaForum.Common.Tasks.Dto;
 using LambdaForum.Controllers;
+using LambdaForum.Users;
 using LambdaForum.Web.Models.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,7 @@ namespace LambdaForum.Web.Mvc.Controllers
 {
     public class TaskController : LambdaForumControllerBase
     {
+       
         private readonly ITaskAppService _taskAppService;
         private readonly ILookupAppService _lookupAppService;
 
@@ -21,16 +23,20 @@ namespace LambdaForum.Web.Mvc.Controllers
         {
             _taskAppService = taskAppService;
             _lookupAppService = lookupAppService;
+    
         }
 
+        //Get all tasks.
         public async Task<ActionResult> Index(GetAllTasksInput input)
         {
             var output = await _taskAppService.GetAll(input);
             var model = new GetAllTaskViewModel(output);
+            
 
             return View(model);
         }
 
+        //Get Results By id.
         public IActionResult TaskDetail(int id)
         {
             var output = _taskAppService.GetTaskById(id);
@@ -38,6 +44,7 @@ namespace LambdaForum.Web.Mvc.Controllers
             return View(model);
         }
 
+        //Create or assign tasks.
         public async Task<ActionResult> Create()
         {
             var peopleSelectListItems = (await _lookupAppService.GetPeopleComboboxItems())

@@ -11,6 +11,7 @@ using Abp.Domain.Uow;
 using Abp.Organizations;
 using Abp.Runtime.Caching;
 using LambdaForum.Authorization.Roles;
+using System.Threading.Tasks;
 
 namespace LambdaForum.Authorization.Users
 {
@@ -53,6 +54,11 @@ namespace LambdaForum.Authorization.Users
                 organizationUnitSettings, 
                 settingManager)
         {
+        }
+
+        public Task GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -4,7 +4,7 @@ using Abp.Domain.Entities.Auditing;
 
 namespace LambdaForum.Roles.Dto
 {
-    public class RoleListDto : EntityDto, IHasCreationTime
+    public class ListResultDto : EntityDto, IHasCreationTime
     {
         public string Name { get; set; }
 

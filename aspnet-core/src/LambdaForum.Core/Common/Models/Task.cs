@@ -1,5 +1,6 @@
 ﻿using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
+using LambdaForum.Authorization.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,14 +19,10 @@ namespace LambdaForum.Common.Models
 
             public TaskState State { get; set; }
 
-            [ForeignKey(nameof(AssignedPersonId))]
-            public Person AssignedPerson { get; set; }
-            public Guid? AssignedPersonId { get; set; }
+             public virtual Person AssignedPerson { get; set; }
+             public Guid? AssignedPersonId { get; set; }
 
-            public Task(Guid? assignedPersonId = null)
-            {
-                AssignedPersonId = assignedPersonId;
-            }
+          
       }
 
       

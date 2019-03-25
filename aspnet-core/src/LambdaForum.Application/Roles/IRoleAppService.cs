@@ -11,6 +11,6 @@ namespace LambdaForum.Roles
 
         Task<GetRoleForEditOutput> GetRoleForEdit(EntityDto input);
 
-        Task<ListResultDto<RoleListDto>> GetRolesAsync(GetRolesInput input);
+        Task<ListResultDto<ListResultDto>> GetRolesAsync(GetRolesInput input);
     }
 }

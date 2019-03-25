@@ -1,4 +1,5 @@
 ﻿using LambdaForum.Common.Tasks.Dto;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,18 +9,12 @@ namespace LambdaForum.Web.Models.Tasks
 {
     public class GetAllTaskViewModel
     {
-        private Task<List<TaskListDto>> output;
 
         public IReadOnlyList<TaskListDto> Tasks { get; set; }
 
         public GetAllTaskViewModel(IReadOnlyList<TaskListDto> tasks)
         {
             Tasks = tasks;
-        }
-
-        public GetAllTaskViewModel(Task<List<TaskListDto>> output)
-        {
-            this.output = output;
         }
     }
 }

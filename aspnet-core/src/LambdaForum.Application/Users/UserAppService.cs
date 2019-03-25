@@ -31,6 +31,7 @@ namespace LambdaForum.Users
         private readonly RoleManager _roleManager;
         private readonly IRepository<Role> _roleRepository;
         private readonly IPasswordHasher<User> _passwordHasher;
+        private readonly IRepository<User, long> _repository;
         private readonly IAbpSession _abpSession;
         private readonly LogInManager _logInManager;
 
@@ -50,6 +51,7 @@ namespace LambdaForum.Users
             _passwordHasher = passwordHasher;
             _abpSession = abpSession;
             _logInManager = logInManager;
+            _repository = repository;
         }
 
         public override async Task<UserDto> Create(CreateUserDto input)
@@ -60,7 +62,7 @@ namespace LambdaForum.Users
 
             user.TenantId = AbpSession.TenantId;
             user.IsEmailConfirmed = true;
-
+            
             await _userManager.InitializeOptionsAsync(AbpSession.TenantId);
 
             CheckErrors(await _userManager.CreateAsync(user, input.Password));
@@ -219,6 +221,9 @@ namespace LambdaForum.Users
             return true;
         }
 
+        
+
+       
     }
 }
 

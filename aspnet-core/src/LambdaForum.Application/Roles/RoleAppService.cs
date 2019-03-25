@@ -49,7 +49,7 @@ namespace LambdaForum.Roles
             return MapToEntityDto(role);
         }
 
-        public async Task<ListResultDto<RoleListDto>> GetRolesAsync(GetRolesInput input)
+        public async Task<ListResultDto<ListResultDto>> GetRolesAsync(GetRolesInput input)
         {
             var roles = await _roleManager
                 .Roles
@@ -59,7 +59,7 @@ namespace LambdaForum.Roles
                 )
                 .ToListAsync();
 
-            return new ListResultDto<RoleListDto>(ObjectMapper.Map<List<RoleListDto>>(roles));
+            return new ListResultDto<ListResultDto>(ObjectMapper.Map<List<ListResultDto>>(roles));
         }
 
         public override async Task<RoleDto> Update(RoleDto input)

@@ -22,12 +22,21 @@ namespace LambdaForum.Common.Tasks
             _taskRepo = taskRepo;
         }
 
+
+        //Assign Task , with dropdown
         public async System.Threading.Tasks.Task Create(CreateTaskDto input)
         {
             var task = ObjectMapper.Map<Task>(input);
             await _taskRepo.InsertAsync(task);
         }
 
+        //Delete Tasks , call from javscript no controller used.
+        public async System.Threading.Tasks.Task Delete(DeleteTaskDto input)
+        {
+            await _taskRepo.DeleteAsync(input.Id);
+        }
+
+        //Get All Tasks.
         public async Task<List<TaskListDto>> GetAll(GetAllTasksInput input)
         {
             var tasks = await _taskRepo.GetAll()
@@ -38,9 +47,18 @@ namespace LambdaForum.Common.Tasks
 
         }
 
+        //Get Task By id.
         public Task GetTaskById(int id)
         {
             return _taskRepo.FirstOrDefault(i => i.Id == id);
+        }
+
+  
+
+        public async System.Threading.Tasks.Task Update(UpdateTaskDto input)
+        {
+            var update = await _taskRepo.FirstOrDefaultAsync(i => i.Id == input.Id);
+            await _taskRepo.UpdateAsync(update);
         }
     }
     

@@ -1,26 +1,29 @@
-﻿@model LambdaForum.Web.Models.Tasks.CreateTaskViewModel
+﻿<!--View for creating a task or assign task.-->
+@model LambdaForum.Web.Models.Tasks.CreateTaskViewModel
 
 @section scripts
 {
-    <environment names="Development">
-        <script src="~/js/Tasks/Create.js" ></script>
-    </environment>
+<environment names="Development">
+    <script src="~/js/Tasks/Create.js"></script>
+   
+</environment>
 }
 
 <h2>@L("NewTask")</h2>
-<form id="TaskForm">
+
+<form id="TaskCreationForm">
     <div class="form-group">
-        <label for="Title">@L("Title")</label>
-        <input type="text" name="Title" class="form-control" placeholder="@L("Title")" required maxlength="">
+        <label for="Title">Title (Minimum Character should be 2)</label>
+        <input type="text" name="Name" minlength="2" class="form-control" placeholder="Title" required>
     </div>
 
     <div class="form-group">
-        <label for="Description">@L("Description")</label>
-        <input type="text" name="Description" class="form-control" placeholder="@L("Description")" maxlength="">
+        <label for="Description">Description</label>
+        <input type="text" name="Description" class="form-control" placeholder="Description" required>
     </div>
 
     <div class="form-group">
-        @Html.Label(L("AssignedPerson"))
+        <label>Assigned Task</label>
         @Html.DropDownList(
        "AssignedPersonId",
        Model.People,
