@@ -39,16 +39,17 @@
         }
 
         //Edit task functionality , without using controller.
+        //This will bring data into your form to edit it.
         $('.edit-user').click(function (e) {
             var userId = $(this).attr("data-user-id");
 
             e.preventDefault();
             $.ajax({
-                url: abp.appPath + 'Users/EditUserModal?userId=' + userId,
+                url: abp.appPath + 'Task/EditTaskModal?userId=' + userId,
                 type: 'POST',
                 contentType: 'application/html',
                 success: function (content) {
-                    $('#UserEditModal div.modal-content').html(content);
+                    $('#TaskEditModal div.modal-content').html(content);
                 },
                 error: function (e) { }
             });

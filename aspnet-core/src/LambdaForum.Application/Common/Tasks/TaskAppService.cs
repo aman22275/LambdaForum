@@ -1,6 +1,9 @@
 ﻿using Abp.Application.Services;
+using Abp.AutoMapper;
 using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
+using Abp.UI;
+using AutoMapper;
 using LambdaForum.Common.Models;
 using LambdaForum.Common.Tasks.Dto;
 using Microsoft.EntityFrameworkCore;
@@ -55,10 +58,14 @@ namespace LambdaForum.Common.Tasks
 
   
 
-        public async System.Threading.Tasks.Task Update(UpdateTaskDto input)
+        public void Update(UpdateTaskDto input)
         {
-            var update = await _taskRepo.FirstOrDefaultAsync(i => i.Id == input.Id);
-            await _taskRepo.UpdateAsync(update);
+            Task update = _taskRepo.FirstOrDefault(i => i.Id == input.Id);
+            update.Name = input.Name;
+            update.Description = input.Description;        
+
+             _taskRepo.UpdateAsync(update);
+        //ObjectMapper.Map<UpdateTaskDto>(update);
         }
     }
     

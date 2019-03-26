@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Abp.AutoMapper;
+using LambdaForum.Common.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LambdaForum.Common.Tasks.Dto
 {
+    [AutoMapFrom(typeof(Task))]
     public class UpdateTaskDto
     {
         public int Id { get; set; }

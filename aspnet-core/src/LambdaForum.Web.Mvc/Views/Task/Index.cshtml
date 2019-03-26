@@ -5,6 +5,7 @@
 <environment names="Development">
     <script src="~/js/Tasks/Create.js"></script>
     <script src="~/js/Tasks/index.js"></script>
+    <script src="~/js/Tasks/_TaskEditModal.js"></script>
 </environment>
     }
 
@@ -14,31 +15,46 @@
 
     </a>
     <div>
-        <ul class="list-group" id="TaskList">
-            @foreach (var task in Model.Tasks)
-            {
-                <li class="list-group-item">
+        <div class="body table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>@L("UserName")</th>
+                        <th>@L("FullName")</th>
+                        <th>@L("EmailAddress")</th>
+                        <th>@L("IsActive")</th>
+                        <th>@L("Actions")</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var task in Model.Tasks)
+                    {
+                        <tr>
+                            <td>
+                                <a asp-controller="Task" asp-action="TaskDetail" asp-route-id="@task.Id">
+                                    <h4 class="list-group-item-heading">@task.Name</h4>
+                                </a>
+                                <div class="list-group-item-text">
+                                    @task.CreationTime.ToString("yyyy-MM-dd HH:mm:ss") | @(task.AssignedPersonName ?? L("Unassigned"))
+                                </div>
+                            </td>
 
-                    <a asp-controller="Task" asp-action="TaskDetail" asp-route-id="@task.Id">
-                        <h4 class="list-group-item-heading">@task.Name</h4>
-                    </a>
-                    <div class="list-group-item-text">
-                        @task.CreationTime.ToString("yyyy-MM-dd HH:mm:ss") | @(task.AssignedPersonName ?? L("Unassigned"))
-                    </div>
-                </li>
+                            <td class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">menu</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="#" class="waves-effect waves-block edit-user" data-user-id="@task.Id" data-toggle="modal" data-target="#TaskEditModal"><i class="material-icons">edit</i>@L("Edit")</a></li>
+                                    <li><a href="#" class="waves-effect waves-block delete-user" data-user-id="@task.Id" data-user-name="@task.Name"><i class="material-icons">delete_sweep</i>@L("Delete")</a></li>
+                                </ul>
+                                </td>
+                        </tr>
+                    }
 
-                <td class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons">menu</i>
-                    </a>
-                    <ul class="dropdown-menu pull-right">
-                        <li><a href="#" class="waves-effect waves-block edit-user" data-user-id="@task.Id" data-toggle="modal" data-target="#UserEditModal"><i class="material-icons">edit</i>@L("Edit")</a></li>
-                        <li><a href="#" class="waves-effect waves-block delete-user" data-user-id="@task.Id" data-user-name="@task.Name"><i class="material-icons">delete_sweep</i>@L("Delete")</a></li>
-                    </ul>
-                </td>
-            }
-        </ul>
-    </div>
+                </tbody>
+                </table>
+
+</div>
     <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" data-target="#TaskCreateModal">
         <i class="material-icons">add</i>
     </button>
@@ -58,6 +74,13 @@
 
                 
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="TaskEditModal" tabindex="-1" role="dialog" aria-labelledby="UserEditModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
         </div>
     </div>
 </div>

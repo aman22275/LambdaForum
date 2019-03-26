@@ -13,7 +13,7 @@ namespace LambdaForum.Common.Tasks
         Task<List<TaskListDto>> GetAll(GetAllTasksInput input);
         Task GetTaskById(int id);
         System.Threading.Tasks.Task Create(CreateTaskDto input);
-        System.Threading.Tasks.Task Update(UpdateTaskDto input);
+        void Update(UpdateTaskDto input);
         System.Threading.Tasks.Task Delete(DeleteTaskDto input);
 
     }

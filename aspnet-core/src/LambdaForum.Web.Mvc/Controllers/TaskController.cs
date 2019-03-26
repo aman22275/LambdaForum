@@ -57,5 +57,18 @@ namespace LambdaForum.Web.Mvc.Controllers
 
 
         }
+
+
+        public IActionResult EditTaskModal(int userId)
+        {
+            var user = _taskAppService.GetTaskById(userId);
+            var model = new EditTaskViewModel(user);
+           
+           // model.Tasks = new UpdateTaskDto();
+            //model.Tasks = ObjectMapper.Map<UpdateTaskDto>(user);
+            return View("_TaskEditModal",model);
+
+
+        }
     }
 }

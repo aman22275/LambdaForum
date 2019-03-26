@@ -1,0 +1,56 @@
+﻿@model LambdaForum.Web.Models.Tasks.EditTaskViewModel
+@{
+    Layout = null;
+}
+
+<div class="modal-body">
+    <form name="TaskEditForm" role="form" novalidate class="form-validation">
+        <input type="hidden" name="Id" value="@Model.Tasks.Id" />
+      <h1>@Model.Tasks.Id</h1>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane animated fadeIn active" id="edit-user-details">
+                <div class="row clearfix" style="margin-top:10px;">
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input id="username" type="text" name="Name" value="@Model.Tasks.Name" required maxlength="32" minlength="2" class="validate form-control">
+                                <label for="username" class="form-label"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input id="name" type="text" name="Description" value="@Model.Tasks.Description" required maxlength="32" class="validate form-control">
+                                <label for="name" class="form-label"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input id="surname" type="text" name="CreationTime" value="@Model.Tasks.CreationTime" required maxlength="32" class="validate form-control">
+                                <label for="surname" class="form-label"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+            <div role="tabpanel" class="tab-pane animated fadeIn" id="edit-user-roles">
+                <div class="row">
+                   
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default close-button waves-effect" data-dismiss="modal">@L("Cancel")</button>
+    <button type="button" class="btn btn-primary save-button waves-effect">@L("Save")</button>
+</div>
+
+<script src="~/js/Tasks/_TaskEditModal.js" asp-append-version="true"></script>
