@@ -25,11 +25,14 @@ namespace LambdaForum.Common.Tasks
             _taskRepo = taskRepo;
         }
 
-
         //Assign Task , with dropdown
         public async System.Threading.Tasks.Task Create(CreateTaskDto input)
         {
             var task = ObjectMapper.Map<Task>(input);
+            if(task == null)
+            {
+                throw new UserFriendlyException("No data, Task cannot be created");
+            }
             await _taskRepo.InsertAsync(task);
         }
 
@@ -43,26 +46,24 @@ namespace LambdaForum.Common.Tasks
         public async Task<List<TaskListDto>> GetAll(GetAllTasksInput input)
         {
             var tasks = await _taskRepo.GetAll()
-                          .Include(t => t.AssignedPerson)
-                .ToListAsync();
+                       .Include(t => t.AssignedPerson)
+                       .ToListAsync();
 
             return new List<TaskListDto>(ObjectMapper.Map<List<TaskListDto>>(tasks));
-
         }
 
-        //Get Task By id.
+        //Get Tasks By id.
         public Task GetTaskById(int id)
         {
             return _taskRepo.FirstOrDefault(i => i.Id == id);
         }
-
   
-
+        //Update Model service, call through the Jquerry.js
         public void Update(UpdateTaskDto input)
         {
             Task update = _taskRepo.FirstOrDefault(i => i.Id == input.Id);
             update.Name = input.Name;
-            update.Description = input.Description;        
+            update.Description = input.Description;       
 
              _taskRepo.UpdateAsync(update);
         //ObjectMapper.Map<UpdateTaskDto>(update);

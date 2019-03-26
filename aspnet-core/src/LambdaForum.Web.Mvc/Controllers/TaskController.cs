@@ -16,27 +16,25 @@ namespace LambdaForum.Web.Mvc.Controllers
     {
        
         private readonly ITaskAppService _taskAppService;
+        //This service is used to get data in dropdown list.
         private readonly ILookupAppService _lookupAppService;
 
         public TaskController(ITaskAppService taskAppService,
             ILookupAppService lookupAppService)
         {
             _taskAppService = taskAppService;
-            _lookupAppService = lookupAppService;
-    
+            _lookupAppService = lookupAppService;    
         }
 
-        //Get all tasks.
+        //Controller used to list all Tasks.
         public async Task<ActionResult> Index(GetAllTasksInput input)
         {
             var output = await _taskAppService.GetAll(input);
-            var model = new GetAllTaskViewModel(output);
-            
-
+            var model = new GetAllTaskViewModel(output);           
             return View(model);
         }
 
-        //Get Results By id.
+        //Controller is used to get Tasks using ID
         public IActionResult TaskDetail(int id)
         {
             var output = _taskAppService.GetTaskById(id);
@@ -44,7 +42,8 @@ namespace LambdaForum.Web.Mvc.Controllers
             return View(model);
         }
 
-        //Create or assign tasks.
+        //Controller is used to create new Tasks . 
+        //Also called through JQuerry
         public async Task<ActionResult> Create()
         {
             var peopleSelectListItems = (await _lookupAppService.GetPeopleComboboxItems())
@@ -55,19 +54,15 @@ namespace LambdaForum.Web.Mvc.Controllers
 
             return View(new CreateTaskViewModel(peopleSelectListItems));
 
-
         }
 
-
+        //Controller is used to get data on the update form. 
+        //Call through JQuerry.
         public IActionResult EditTaskModal(int userId)
         {
             var user = _taskAppService.GetTaskById(userId);
             var model = new EditTaskViewModel(user);
-           
-           // model.Tasks = new UpdateTaskDto();
-            //model.Tasks = ObjectMapper.Map<UpdateTaskDto>(user);
             return View("_TaskEditModal",model);
-
 
         }
     }
