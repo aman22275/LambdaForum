@@ -6,6 +6,7 @@
     <script src="~/js/Tasks/Create.js"></script>
     <script src="~/js/Tasks/index.js"></script>
     <script src="~/js/Tasks/_TaskEditModal.js"></script>
+    <script src="~/js/Tasks/_TaskCreateModal.js"></script>
 </environment>
     }
 
@@ -20,10 +21,9 @@
                 <thead>
                     <tr>
                         <th>@L("UserName")</th>
-                        <th>@L("FullName")</th>
-                        <th>@L("EmailAddress")</th>
-                        <th>@L("IsActive")</th>
-                        <th>@L("Actions")</th>
+                        <th>Due Date</th>
+                        <th>Task Type</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,6 +38,12 @@
                                     @task.CreationTime.ToString("yyyy-MM-dd HH:mm:ss") | @(task.AssignedPersonName ?? L("Unassigned"))
                                 </div>
                             </td>
+                            <td>
+                                @task.DueDate
+                            </td>
+                            <td>
+                                @task.TaskType
+                            </td>
 
                             <td class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -47,40 +53,52 @@
                                     <li><a href="#" class="waves-effect waves-block edit-user" data-user-id="@task.Id" data-toggle="modal" data-target="#TaskEditModal"><i class="material-icons">edit</i>@L("Edit")</a></li>
                                     <li><a href="#" class="waves-effect waves-block delete-user" data-user-id="@task.Id" data-user-name="@task.Name"><i class="material-icons">delete_sweep</i>@L("Delete")</a></li>
                                 </ul>
-                                </td>
+                            </td>
                         </tr>
                     }
 
                 </tbody>
-                </table>
+            </table>
 
-</div>
-    <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" data-target="#TaskCreateModal">
-        <i class="material-icons">add</i>
-    </button>
-</div>
+        </div>
+        <button type="button" class="btn btn-primary create-user btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" data-target="#TaskCreateModal">
+            <i class="material-icons">add</i>
+        </button>
+    </div>
 
-<div class="modal fade" id="TaskCreateModal" tabindex="-1" role="dialog" aria-labelledby="UserCreateModalLabel" data-backdrop="static">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">
-                   
-                </h4>
+    <!--
+            <div class="modal fade" id="TaskCreateModal" tabindex="-1" role="dialog" aria-labelledby="UserCreateModalLabel" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+
+                    </h4>
+                </div>
+                <div class="modal-body">
+
+
+
+
+                </div>
             </div>
-            <div class="modal-body">
+        </div>
+    </div>
 
-
-
+            -->
+    <div class="modal fade" id="TaskCreateModal" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
                 
             </div>
         </div>
     </div>
-</div>
 
-<div class="modal fade" id="TaskEditModal" tabindex="-1" role="dialog" aria-labelledby="UserEditModalLabel" data-backdrop="static">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+    <div class="modal fade" id="TaskEditModal" tabindex="-1" role="dialog"  data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              
+            </div>
         </div>
     </div>
-</div>
+

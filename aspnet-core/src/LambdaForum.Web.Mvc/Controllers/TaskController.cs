@@ -56,6 +56,16 @@ namespace LambdaForum.Web.Mvc.Controllers
 
         }
 
+        public async Task<ActionResult> CreateTaskModal()
+        {
+            var peopleSelectListItems = (await _lookupAppService.GetPeopleComboboxItems())
+                 .Select(p => p.ToSelectListItem())
+                 .ToList();
+
+          peopleSelectListItems.Insert(0, new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem { Value = string.Empty, Text = L("unassigned"), Selected = true });
+            return View("_TaskCreateModal", new CreateTaskViewModel(peopleSelectListItems));
+        }
+
         //Controller is used to get data on the update form. 
         //Call through JQuerry.
         public IActionResult EditTaskModal(int userId)

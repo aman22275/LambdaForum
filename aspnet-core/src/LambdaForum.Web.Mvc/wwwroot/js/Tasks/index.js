@@ -55,7 +55,20 @@
             });
         });
 
+        $('.create-user').click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: abp.appPath + 'Task/CreateTaskModal',
+                type: 'POST',
+                contentType: 'application/html',
+                success: function (content) {
+                    $('#TaskCreateModal div.modal-content').html(content);
+                },
+                error: function (e) { }
+            });
+        });
 
+        
 
  });
 })();
